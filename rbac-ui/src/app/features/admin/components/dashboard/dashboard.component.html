@@ -1,0 +1,67 @@
+<nz-layout>
+  <nz-header nz-flex nzAlign="center" nzJustify="space-between">
+    <nz-space nz-flex nzAlign="center">
+      <img *nzSpaceItem src="assets/banner.png" height="50" class="logo" />
+      <span
+        *nzSpaceItem
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"
+      ></span>
+    </nz-space>
+
+    <nz-space nz-flex nzAlign="center" (click)="logout()">
+      <span *nzSpaceItem nz-icon nzType="logout"></span>
+      <span *nzSpaceItem> Logout </span>
+    </nz-space>
+  </nz-header>
+
+  <nz-layout>
+    <nz-sider
+      [nzBreakpoint]="'md'"
+      [(nzCollapsed)]="isCollapsed"
+      [nzCollapsedWidth]="80"
+      [nzCollapsible]="true"
+      [nzTrigger]="null"
+      nzTheme="light"
+      class="sider"
+    >
+      <ul nz-menu nzMode="inline" class="sider-menu">
+        <li
+          nz-menu-item
+          routerLink="user"
+          routerLinkActive="ant-menu-item-selected"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span nz-icon nzType="user"></span>
+          <span>Manage User</span>
+        </li>
+        <li nz-menu-item routerLink="role">
+          <span nz-icon nzType="audit"></span>
+          <span>Manage Role</span>
+        </li>
+        <li nz-menu-item routerLink="permission">
+          <span nz-icon nzType="tool"></span>
+          <span>Manage Permission</span>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout class="inner-layout">
+      <nz-content>
+        <router-outlet></router-outlet>
+      </nz-content>
+
+      <nz-footer>
+        <nz-typography>
+          <span>Made with </span>
+          <span nz-icon nzType="heart" nzTheme="fill" style="color: red"></span>
+          <span> by </span>
+          <a href="https://www.linkedin.com/in/urva-suthar/" target="_blank">
+            <strong>Urva Suthar</strong>
+          </a>
+        </nz-typography>
+      </nz-footer>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>

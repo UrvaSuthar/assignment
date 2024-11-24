@@ -1,0 +1,32 @@
+/* Apply rounded corners to inputs, selects, buttons */
+::ng-deep .nz-input,
+::ng-deep .nz-select-selector,
+::ng-deep .ant-input,
+::ng-deep .ant-input-affix-wrapper,
+::ng-deep .ant-btn,
+::ng-deep .nz-btn {
+  border-radius: 0.5rem; /* Adjust for desired roundness */
+}
+
+/* Apply rounded corners to modal and content */
+::ng-deep .ant-modal-content{
+  border-radius: 16px;
+}
+::ng-deep .ant-modal-header{
+  border-radius: 16px 16px 0 0;
+}
+/* Apply rounded corners to tables */
+::ng-deep .ant-table {
+  border-radius: 12px;
+  overflow: hidden; /* Ensures rounded corners work correctly */
+}
+
+/* Fully rounded tags */
+::ng-deep .ant-tag {
+  border-radius: 50px;
+}
+
+/* Apply rounded corners to form items */
+::ng-deep .ant-form-item {
+  border-radius: 8px;
+}

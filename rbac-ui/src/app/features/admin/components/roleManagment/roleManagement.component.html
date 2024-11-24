@@ -1,0 +1,85 @@
+<nz-table
+  #rolesTable
+  [nzData]="roles"
+  [nzBordered]="true"
+  [nzSize]="'middle'"
+  [nzLoading]="isLoading"
+  [nzShowPagination]="true"
+>
+  <thead>
+    <tr>
+      <th nzWidth="30%">Role Name</th>
+      <th nzWidth="40%">Permissions</th>
+      <th nzWidth="20%" nzAlign="right">
+        <button nz-button nzType="primary" (click)="openRoleForm()">
+          Add Role
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let role of roles">
+      <td>{{ role.name }}</td>
+      <td>
+        <nz-tag *ngFor="let perm of role.permissions" nzColor="blue">
+          {{ getPermissionName(perm) }}
+        </nz-tag>
+      </td>
+      <td nzAlign="right">
+        <button nz-button nzType="link" (click)="openRoleForm(role)">
+          <i nz-icon nzType="edit" nzTheme="outline"></i>
+        </button>
+        <button
+          *ngIf="!role.isProtected"
+          nz-button
+          nzType="text"
+          nzDanger
+          (click)="deleteRole(role.id)"
+        >
+          <i nz-icon nzType="delete" nzTheme="outline"></i>
+        </button>
+        <span
+          *ngIf="role.isProtected"
+          nz-tooltip
+          nzTooltipTitle="Role is protected."
+        >
+          <button nz-button nzType="text">
+            <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+          </button>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<nz-modal
+  [(nzVisible)]="isRoleModalVisible"
+  [nzTitle]="editMode ? 'Edit Role' : 'Add Role'"
+  (nzOnCancel)="closeModal()"
+  (nzOnOk)="submitRoleForm()"
+>
+  <form *nzModalContent nz-form [formGroup]="roleForm">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Role Name</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <input nz-input formControlName="name" placeholder="Enter role name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Permissions</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <nz-select
+          formControlName="permissions"
+          nzMode="multiple"
+          nzPlaceHolder="Select permissions"
+        >
+          <nz-option
+            *ngFor="let perm of allPermissions"
+            [nzLabel]="perm.name"
+            [nzValue]="perm.id"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

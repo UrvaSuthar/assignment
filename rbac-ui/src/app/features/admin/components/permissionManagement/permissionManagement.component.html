@@ -1,0 +1,72 @@
+<nz-table
+  #permissionsTable
+  [nzData]="permissions"
+  [nzBordered]="false"
+  [nzSize]="'middle'"
+  [nzLoading]="isLoading"
+  [nzShowPagination]="true"
+>
+  <thead>
+    <tr>
+      <th nzWidth="50%">Permission Name</th>
+      <th nzWidth="30%" nzAlign="right">
+        <button nz-button nzType="primary" (click)="openPermissionForm()">
+          Add Permission
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let permission of permissions">
+      <td>{{ permission.name }}</td>
+      <td nzAlign="right">
+        <button
+          *ngIf="!permission.isProtected"
+          nz-button
+          nzType="link"
+          (click)="openPermissionForm(permission)"
+        >
+          <i nz-icon nzType="edit" nzTheme="outline"></i>
+        </button>
+        <button
+          nz-button
+          nzType="text"
+          nzDanger
+          *ngIf="!permission.isProtected"
+          (click)="deletePermission(permission.id)"
+        >
+          <i nz-icon nzType="delete" nzTheme="outline"></i>
+        </button>
+        <span
+          *ngIf="permission.isProtected"
+          nz-tooltip
+          nzTooltipTitle="Permission is protected."
+        >
+          <button nz-button nzType="text">
+            <i nz-icon nzType="info-circle" nzTheme="outline"></i>
+          </button>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<nz-modal
+  [(nzVisible)]="isPermissionModalVisible"
+  [nzTitle]="editMode ? 'Edit Permission' : 'Add Permission'"
+  (nzOnCancel)="closeModal()"
+  (nzOnOk)="submitPermissionForm()"
+>
+  <form *nzModalContent nz-form [formGroup]="permissionForm">
+    <nz-form-item nzRequired>
+      <nz-form-label [nzSpan]="6">Permission Name</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <input
+          nz-input
+          formControlName="name"
+          placeholder="Enter permission name"
+        />
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

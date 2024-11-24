@@ -1,0 +1,37 @@
+nz-layout {
+  height: 100%;
+}
+nz-header {
+  background: #f5f5f5;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+nz-content {
+  background: #fff;
+  height: 100%;
+}
+
+nz-sider {
+  background: #fff;
+  height: 100%;
+}
+
+.user-page{
+ height: 100%;
+}
+
+.ant-card-body {
+height: 100%;
+}
+
+nz-footer {
+  background-color: #fff;
+  text-align: center;
+}
+
+.logo {
+  border-radius: 0.5rem;
+  filter: opacity(70%);
+}

@@ -1,0 +1,86 @@
+<nz-layout>
+  <nz-header nz-flex nzAlign="center" nzJustify="space-between">
+    <img src="assets/banner.png" height="50" class="logo" />
+    <nz-space nz-flex nzAlign="center" (click)="logout()">
+      <span *nzSpaceItem nz-icon nzType="logout"></span>
+      <span *nzSpaceItem> Logout </span>
+    </nz-space>
+  </nz-header>
+  <nz-layout>
+    <nz-content>
+      <nz-card nzBorderless class="user-page" height="100%">
+        <ng-container height="100%" *ngIf="hasRecruiterRole; else noAccess">
+          <h1 nz-typography>Welcome 🎉</h1>
+          <p nz-paragraph>
+            Hey there, <strong>{{ userName }}</strong
+            >! 👋 <br />
+            You've unlocked this page because you have the
+            <nz-tag [nzColor]="'blue'">Recruiter Role</nz-tag>.
+          </p>
+
+          <nz-divider></nz-divider>
+          
+          <div 
+          *ngIf="hasHireMePermission"
+          nz-flex
+          nzJustify="space-evenly"
+          nzAlign="center"
+          height="100%"
+          >
+            <nz-result
+            nzStatus="success"
+            nzTitle="🏆 Let's work together!"
+            nzSubTitle="Click below to see my resume and take the next step!"
+            >
+            <div nz-result-extra>
+              <button
+              nz-button
+              nzType="primary"
+              nzSize="large"
+              (click)="onHireMeClick()"
+              >
+                🎉 Hire Me!
+              </button>
+            </div>
+          </nz-result>
+          <iframe
+          nzSize="small"
+          nzTitle="Resume"
+          src="assets/urva_resume.pdf"
+          style="height: 60vh; border: none;">
+
+          ></iframe>
+        </div>
+
+          <nz-result
+            *ngIf="!hasHireMePermission"
+            nzStatus="warning"
+            nzTitle="🛑 Access Denied!"
+            nzSubTitle="You need the 'Hire Me' permission to proceed."
+          ></nz-result>
+        </ng-container>
+
+        <ng-template #noAccess>
+          <nz-result
+            nzStatus="error"
+            nzTitle="⛔ Oops!"
+            nzSubTitle="You don’t have the Recruiter role to access this part."
+          ></nz-result>
+        </ng-template>
+      </nz-card>
+    </nz-content>
+    <nz-sider nzWidth="300">
+      <app-comment [author]="user"></app-comment>
+    </nz-sider>
+  </nz-layout>
+  <nz-footer>
+    <nz-typography>
+      <span>Made with </span>
+      <span nz-icon nzType="heart" nzTheme="fill" style="color: red;"></span>
+      <span> by </span>
+      <a href="https://www.linkedin.com/in/urva-suthar/" target="_blank">
+        <strong>Urva Suthar</strong>
+      </a>
+    </nz-typography>
+  </nz-footer>
+</nz-layout>

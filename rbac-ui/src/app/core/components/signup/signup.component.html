@@ -1,0 +1,65 @@
+<div class="main">
+  <nz-card class="card">
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      class="login-form"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your name!">
+          <nz-input-group nzPrefixIcon="user">
+            <input
+              type="text"
+              nz-input
+              formControlName="name"
+              placeholder="Name"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group nzPrefixIcon="user">
+            <input
+              type="text"
+              nz-input
+              formControlName="email"
+              placeholder="Email"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+            <input
+              nz-input
+              formControlName="password"
+              placeholder="Enter password"
+              [type]="passwordVisible ? 'text' : 'password'"
+            />
+          </nz-input-group>
+          <ng-template #suffixTemplate>
+            <i
+              nz-icon
+              [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+              (click)="passwordVisible = !passwordVisible"
+              class="password-toggle-icon"
+            ></i>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <button
+        nz-button
+        class="login-form-button login-form-margin"
+        [nzType]="'primary'"
+      >
+        Register
+      </button>
+      Already have an account?
+      <a href="/auth/login">Log in</a>
+    </form>
+  </nz-card>
+</div>

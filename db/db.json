@@ -1,0 +1,138 @@
+{
+  "permissions": [
+    {
+      "id": "2",
+      "name": "write",
+      "isProtected": true
+    },
+    {
+      "id": "1",
+      "name": "read",
+      "isProtected": true
+    },
+    {
+      "id": "11",
+      "name": "hireme",
+      "isProtected": true
+    },
+    {
+      "id": "111",
+      "name": "delete",
+      "isProtected": false
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "name": "admin",
+      "permissions": [
+        1,
+        2,
+        111
+      ],
+      "isProtected": true
+    },
+    {
+      "id": "2",
+      "name": "user",
+      "isProtected": true,
+      "permissions": [
+        "1",
+        "11"
+      ]
+    },
+    {
+      "id": "585c",
+      "name": "recruiter",
+      "isProtected": true,
+      "permissions": [
+        "11",
+        "2",
+        "1"
+      ]
+    },
+    {
+      "id": "4841",
+      "name": "test",
+      "permissions": [
+        "1"
+      ],
+      "isProtected": false
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin2",
+      "roleId": "1",
+      "isActive": true,
+      "role": {
+        "id": "1",
+        "name": "admin",
+        "permissions": [
+          1,
+          2,
+          111
+        ],
+        "isProtected": true
+      }
+    },
+    {
+      "id": "1bb3",
+      "name": "urva",
+      "email": "test@gmail.com",
+      "password": "urvaq2",
+      "roleId": "585c",
+      "isActive": true,
+      "role": {
+        "id": "585c",
+        "name": "recruiter",
+        "isProtected": true,
+        "permissions": [
+          "11",
+          "2",
+          "1"
+        ]
+      }
+    },
+    {
+      "id": "6d13",
+      "name": "test",
+      "email": "test@test.test",
+      "password": "test1234",
+      "roleId": "2",
+      "isActive": false,
+      "role": {
+        "id": "2",
+        "name": "user",
+        "isProtected": true,
+        "permissions": [
+          "1",
+          "11"
+        ]
+      }
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "author": "urva",
+      "content": "This is a comment",
+      "datetime": "2024-11-24T07:19:59.356Z"
+    },
+    {
+      "id": "2",
+      "author": "urva",
+      "content": "2nd comment",
+      "datetime": "2024-11-24T07:20:01.323Z"
+    },
+    {
+      "id": "3",
+      "author": "urva",
+      "content": "How are you?",
+      "datetime": "2024-11-24T07:20:02.464Z"
+    }
+  ]
+}

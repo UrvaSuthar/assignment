@@ -1,0 +1,41 @@
+<nz-card
+  nzTitle="Comments on my profile"
+  nzBorderless
+  style="height: 100%; width: 30vw; overflow-y: auto"
+>
+  <ng-container *ngIf="hasViewPermission; else noAccessTemplate">
+    <nz-comment
+      *ngFor="let comment of comments"
+      [nzAuthor]="comment.author"
+      [nzDatetime]="comment.datetime"
+    >
+      <nz-comment-content>
+        <p>{{ comment.content }}</p>
+      </nz-comment-content>
+    </nz-comment>
+
+    <div *ngIf="hasWritePermission" style="margin-top: 16px">
+      <nz-input-group [nzSuffix]="suffixIcon">
+        <input
+          nz-input
+          [(ngModel)]="newComment"
+          placeholder="Add a comment..."
+          (keydown.enter)="addComment()"
+        />
+      </nz-input-group>
+      <ng-template #suffixIcon>
+        <button nz-button nzType="primary" (click)="addComment()">
+          <span nz-icon nzType="send"></span>
+        </button>
+      </ng-template>
+    </div>
+  </ng-container>
+
+  <ng-template #noAccessTemplate>
+    <nz-result
+      nzStatus="error"
+      nzTitle="⛔ Access Denied"
+      nzSubTitle="You don’t have permission to view or interact with the comments."
+    ></nz-result>
+  </ng-template>
+</nz-card>
