@@ -83,7 +83,7 @@
       "id": "1bb3",
       "name": "urva",
       "email": "test@gmail.com",
-      "password": "urvaq2",
+      "password": "testpass",
       "roleId": "585c",
       "isActive": true,
       "role": {
